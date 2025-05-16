@@ -1,3 +1,4 @@
+
 import { useState, useMemo } from "react";
 import { models } from "@/data/models";
 import Navbar from "@/components/Navbar";
@@ -5,6 +6,7 @@ import FilterBar, { FilterState } from "@/components/FilterBar";
 import ModelCard from "@/components/ModelCard";
 import Footer from "@/components/Footer";
 import { ModelType } from "@/types/models";
+
 const Index = () => {
   const [filters, setFilters] = useState<FilterState>({
     search: "",
@@ -13,6 +15,7 @@ const Index = () => {
     showPaid: true,
     sortBy: "score"
   });
+  
   const filteredModels = useMemo(() => {
     return models.filter(model => {
       // Filter by search term
@@ -44,9 +47,11 @@ const Index = () => {
       }
     });
   }, [filters]);
+  
   const handleFilterChange = (newFilters: FilterState) => {
     setFilters(newFilters);
   };
+  
   return <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
@@ -56,7 +61,12 @@ const Index = () => {
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
                 <span className="gradient-text">FRONT-END ARENA</span>
               </h1>
-              <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">Discover  the best AI language models for Front-end coding specific tasks </p>
+              <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                Discover the best AI language models specifically tested for front-end development
+              </p>
+              <p className="mt-2 max-w-md mx-auto text-sm text-gray-500 sm:text-base md:max-w-3xl">
+                Based on Universal Benchmarks (UB) scoring system
+              </p>
             </div>
           </div>
         </div>
@@ -65,7 +75,7 @@ const Index = () => {
           <FilterBar onFilterChange={handleFilterChange} />
           
           <div className="mb-8">
-            <h2 className="text-2xl font-bold mb-4">Top AI Models</h2>
+            <h2 className="text-2xl font-bold mb-4">Top Front-end AI Models</h2>
             <p className="text-gray-600 mb-2">
               Showing {filteredModels.length} models
             </p>
@@ -84,4 +94,5 @@ const Index = () => {
       <Footer />
     </div>;
 };
+
 export default Index;
