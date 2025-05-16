@@ -5,7 +5,6 @@ import Navbar from "@/components/Navbar";
 import FilterBar, { FilterState } from "@/components/FilterBar";
 import ModelCard from "@/components/ModelCard";
 import Footer from "@/components/Footer";
-import { ModelType } from "@/types/models";
 import { Hero } from "@/components/Hero";
 
 const Index = () => {
@@ -20,19 +19,12 @@ const Index = () => {
   const filteredModels = useMemo(() => {
     return models.filter(model => {
       // Filter by search term
-      if (filters.search && !model.name.toLowerCase().includes(filters.search.toLowerCase()) && !model.description.toLowerCase().includes(filters.search.toLowerCase()) && !model.organization.toLowerCase().includes(filters.search.toLowerCase())) {
+      if (filters.search && !model.name.toLowerCase().includes(filters.search.toLowerCase()) && 
+          !model.description.toLowerCase().includes(filters.search.toLowerCase()) && 
+          !model.organization.toLowerCase().includes(filters.search.toLowerCase())) {
         return false;
       }
 
-      // Filter by task
-      if (filters.task !== "all") {
-        const hasTasks = model.tasks.some(task => task.taskName.toLowerCase().replace(" ", "-") === filters.task);
-        if (!hasTasks) return false;
-      }
-
-      // Filter by pricing
-      if (!filters.showFree && model.free) return false;
-      if (!filters.showPaid && !model.free) return false;
       return true;
     }).sort((a, b) => {
       // Sort by selected sort option
@@ -53,33 +45,44 @@ const Index = () => {
     setFilters(newFilters);
   };
   
-  return <div className="min-h-screen flex flex-col dark:bg-gray-900">
+  return (
+    <div className="min-h-screen flex flex-col dark:bg-gray-900">
       <Navbar />
       <main className="flex-grow">
         <Hero />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <FilterBar onFilterChange={handleFilterChange} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative">
+          <div className="absolute inset-0 bg-grid-white dark:bg-grid-dark pointer-events-none opacity-[0.05]" />
           
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold mb-4">Top Front-end AI Models</h2>
-            <p className="text-gray-600 dark:text-gray-300 mb-2">
-              Showing {filteredModels.length} models
-            </p>
+          <div className="relative">
+            <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+              <div>
+                <h2 className="text-2xl font-bold mb-2">Top Front-end AI Models</h2>
+                <p className="text-gray-600 dark:text-gray-300">
+                  Showing <span className="font-semibold text-primary">{filteredModels.length}</span> models ranked by Universal Benchmarks
+                </p>
+              </div>
+              <div className="w-full md:w-auto">
+                <FilterBar onFilterChange={handleFilterChange} />
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredModels.map(model => <ModelCard key={model.id} model={model} />)}
+            </div>
+            
+            {filteredModels.length === 0 && 
+              <div className="text-center py-12 glass rounded-xl">
+                <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">No models found</h3>
+                <p className="mt-2 text-gray-500 dark:text-gray-400">Try adjusting your search to see more results.</p>
+              </div>
+            }
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredModels.map(model => <ModelCard key={model.id} model={model} />)}
-          </div>
-          
-          {filteredModels.length === 0 && <div className="text-center py-12">
-              <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">No models found</h3>
-              <p className="mt-2 text-gray-500 dark:text-gray-400">Try adjusting your filters to see more results.</p>
-            </div>}
         </div>
       </main>
       <Footer />
-    </div>;
+    </div>
+  );
 };
 
 export default Index;

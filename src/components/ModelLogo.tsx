@@ -13,10 +13,10 @@ const ModelLogo = ({ organization, name }: ModelLogoProps) => {
       "Google": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg",
       "Anthropic": "https://www.anthropic.com/images/share-claude.jpg",
       "OpenAI": "https://seeklogo.com/images/O/open-ai-logo-8B9BFEDC26-seeklogo.com.png",
-      "DeepSeek": "https://avatars.githubusercontent.com/u/128925023",
-      "Alibaba": "https://logowik.com/content/uploads/images/alibaba-group3560.jpg",
-      "Meta": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Meta_Platforms_Inc._logo.svg/800px-Meta_Platforms_Inc._logo.svg.png",
-      "xAI": "https://upload.wikimedia.org/wikipedia/commons/9/9d/X.ai_logo.png",
+      "DeepSeek": "https://cdn.prod.website-files.com/657639ebfb91510f45654149/67b4c293747043c9b6d86ec3_deepseek-color.png",
+      "Alibaba": "https://opencv.org/wp-content/uploads/2025/01/MIhJKlK5yVR3axxgE7_gHL-rsKjliShJKd3asUqg5KDdEsdOGut-9mCW4Ti1x7i2y8zCkxeZHQFR00sQg6BfYA.png",
+      "Meta": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Meta_Platforms_Inc._logo_%28cropped%29.svg/640px-Meta_Platforms_Inc._logo_%28cropped%29.svg.png",
+      "xAI": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQASdaM6WkLjZS4VZoCatPZogXWs2rWeMREmw&s",
     };
     
     return logoImages[org as keyof typeof logoImages] || "https://github.com/shadcn.png";

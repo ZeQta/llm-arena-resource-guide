@@ -12,7 +12,14 @@ interface ModelCardProps {
 
 const ModelCard = ({ model }: ModelCardProps) => {
   return (
-    <Card className="w-full h-full hover:shadow-md dark:hover:shadow-primary/10 transition-all duration-300 border-t-2 hover:border-t-primary">
+    <Card className="w-full h-full group hover:shadow-lg dark:hover:shadow-primary/10 transition-all duration-300 border-t-2 hover:border-t-primary overflow-hidden relative">
+      {/* Rank badge */}
+      <div className="absolute -top-3 -left-6 w-16 h-16 bg-primary/10 dark:bg-primary/20 rotate-45">
+        <div className="absolute top-[22px] left-[30px] transform -rotate-45">
+          <span className="text-xs font-bold text-primary">#{model.rank}</span>
+        </div>
+      </div>
+
       <CardHeader>
         <div className="flex justify-between items-start">
           <div className="flex items-center space-x-3">
@@ -22,29 +29,37 @@ const ModelCard = ({ model }: ModelCardProps) => {
               <CardDescription>{model.organization}</CardDescription>
             </div>
           </div>
-          <Badge variant={model.free ? "outline" : "default"} className={model.free ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 hover:bg-green-200" : ""}>
-            {model.free ? "Free" : "Paid"}
+          <Badge variant={model.license === "Apache 2.0" || model.license === "MIT" ? "outline" : "default"} className={model.license === "Apache 2.0" || model.license === "MIT" ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 hover:bg-green-200" : ""}>
+            {model.license}
           </Badge>
         </div>
       </CardHeader>
       <CardContent>
         <div className="mb-4">
-          <p className="text-sm text-muted-foreground line-clamp-2">{model.description}</p>
-        </div>
-        <div className="grid grid-cols-2 gap-4 mb-4">
-          <div className="bg-muted/50 p-2 rounded-md">
-            <p className="text-xs text-muted-foreground">Arena Score</p>
-            <p className="text-lg font-bold">{model.score.toFixed(1)}</p>
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm font-medium text-muted-foreground">Arena Score</span>
+            <span className="text-lg font-bold">{model.score.toFixed(1)}</span>
           </div>
-          <div className="bg-muted/50 p-2 rounded-md">
-            <p className="text-xs text-muted-foreground">Top Task</p>
-            <p className="text-sm font-medium">{model.topTask}</p>
+          <div className="w-full h-2 bg-muted/50 rounded-full overflow-hidden">
+            <div 
+              className="h-full bg-gradient-to-r from-primary to-accent" 
+              style={{ width: `${(model.score / 1500) * 100}%` }}
+            ></div>
+          </div>
+          <div className="text-xs text-muted-foreground mt-1">
+            CI: {model.ci}
           </div>
         </div>
-        <div className="flex flex-wrap gap-1 mt-2">
-          {model.tags.map(tag => (
-            <Badge key={tag} variant="secondary" className="text-xs">{tag}</Badge>
-          ))}
+        
+        <div className="flex justify-between mb-4">
+          <div className="bg-muted/30 p-2 rounded-md flex-1 mr-2">
+            <p className="text-xs text-muted-foreground">Votes</p>
+            <p className="text-sm font-medium">{model.votes.toLocaleString()}</p>
+          </div>
+          <div className="bg-muted/30 p-2 rounded-md flex-1">
+            <p className="text-xs text-muted-foreground">License</p>
+            <p className="text-sm font-medium truncate">{model.license}</p>
+          </div>
         </div>
       </CardContent>
       <CardFooter>
