@@ -6,6 +6,7 @@ import FilterBar, { FilterState } from "@/components/FilterBar";
 import ModelCard from "@/components/ModelCard";
 import Footer from "@/components/Footer";
 import { ModelType } from "@/types/models";
+import { Hero } from "@/components/Hero";
 
 const Index = () => {
   const [filters, setFilters] = useState<FilterState>({
@@ -52,31 +53,17 @@ const Index = () => {
     setFilters(newFilters);
   };
   
-  return <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col dark:bg-gray-900">
       <Navbar />
       <main className="flex-grow">
-        <div className="bg-gradient-to-b from-blue-50 to-white py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
-                <span className="gradient-text">FRONT-END ARENA</span>
-              </h1>
-              <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-                Discover the best AI language models specifically tested for front-end development
-              </p>
-              <p className="mt-2 max-w-md mx-auto text-sm text-gray-500 sm:text-base md:max-w-3xl">
-                Based on Universal Benchmarks (UB) scoring system
-              </p>
-            </div>
-          </div>
-        </div>
+        <Hero />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <FilterBar onFilterChange={handleFilterChange} />
           
           <div className="mb-8">
             <h2 className="text-2xl font-bold mb-4">Top Front-end AI Models</h2>
-            <p className="text-gray-600 mb-2">
+            <p className="text-gray-600 dark:text-gray-300 mb-2">
               Showing {filteredModels.length} models
             </p>
           </div>
@@ -86,8 +73,8 @@ const Index = () => {
           </div>
           
           {filteredModels.length === 0 && <div className="text-center py-12">
-              <h3 className="text-xl font-medium text-gray-900">No models found</h3>
-              <p className="mt-2 text-gray-500">Try adjusting your filters to see more results.</p>
+              <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">No models found</h3>
+              <p className="mt-2 text-gray-500 dark:text-gray-400">Try adjusting your filters to see more results.</p>
             </div>}
         </div>
       </main>

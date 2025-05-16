@@ -9,17 +9,17 @@ interface ModelLogoProps {
 const ModelLogo = ({ organization, name }: ModelLogoProps) => {
   // Generate logo based on organization
   const getLogoUrl = (org: string): string => {
-    const placeholderImages = {
-      "Google": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=400&auto=format&fit=crop",
-      "Anthropic": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=400&auto=format&fit=crop",
-      "OpenAI": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=400&auto=format&fit=crop",
-      "DeepSeek": "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=400&h=400&auto=format&fit=crop",
-      "Alibaba": "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&h=400&auto=format&fit=crop",
-      "Meta": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=400&auto=format&fit=crop",
-      "xAI": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=400&auto=format&fit=crop",
+    const logoImages = {
+      "Google": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg",
+      "Anthropic": "https://www.anthropic.com/images/share-claude.jpg",
+      "OpenAI": "https://seeklogo.com/images/O/open-ai-logo-8B9BFEDC26-seeklogo.com.png",
+      "DeepSeek": "https://avatars.githubusercontent.com/u/128925023",
+      "Alibaba": "https://logowik.com/content/uploads/images/alibaba-group3560.jpg",
+      "Meta": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Meta_Platforms_Inc._logo.svg/800px-Meta_Platforms_Inc._logo.svg.png",
+      "xAI": "https://upload.wikimedia.org/wikipedia/commons/9/9d/X.ai_logo.png",
     };
     
-    return placeholderImages[org as keyof typeof placeholderImages] || placeholderImages["Google"];
+    return logoImages[org as keyof typeof logoImages] || "https://github.com/shadcn.png";
   };
   
   // Get initials for fallback
