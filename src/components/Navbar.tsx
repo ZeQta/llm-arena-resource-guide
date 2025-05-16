@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,30 +22,6 @@ const Navbar = () => {
               <Link to="/compare" className="border-transparent text-gray-500 hover:border-primary hover:text-primary inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                 Compare Models
               </Link>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="link" className="border-transparent text-gray-500 hover:border-primary hover:text-primary inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                    Tasks
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuItem>
-                    <Link to="/tasks/text-generation" className="w-full">
-                      Text Generation
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Link to="/tasks/question-answering" className="w-full">
-                      Question Answering
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Link to="/tasks/summarization" className="w-full">
-                      Summarization
-                    </Link>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
             </div>
           </div>
           
@@ -71,15 +46,6 @@ const Navbar = () => {
           </Link>
           <Link to="/compare" className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-primary hover:text-primary block pl-3 pr-4 py-2 border-l-4 text-base font-medium" onClick={() => setIsOpen(false)}>
             Compare Models
-          </Link>
-          <Link to="/tasks/text-generation" className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-primary hover:text-primary block pl-3 pr-4 py-2 border-l-4 text-base font-medium" onClick={() => setIsOpen(false)}>
-            Text Generation
-          </Link>
-          <Link to="/tasks/question-answering" className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-primary hover:text-primary block pl-3 pr-4 py-2 border-l-4 text-base font-medium" onClick={() => setIsOpen(false)}>
-            Question Answering
-          </Link>
-          <Link to="/tasks/summarization" className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-primary hover:text-primary block pl-3 pr-4 py-2 border-l-4 text-base font-medium" onClick={() => setIsOpen(false)}>
-            Summarization
           </Link>
         </div>
       </div>

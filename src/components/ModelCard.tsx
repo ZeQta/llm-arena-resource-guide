@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ModelType } from "@/types/models";
+import ModelLogo from "./ModelLogo";
 
 interface ModelCardProps {
   model: ModelType;
@@ -14,12 +15,17 @@ const ModelCard = ({ model }: ModelCardProps) => {
     <Card className="w-full h-full hover:shadow-md transition-shadow duration-300">
       <CardHeader>
         <div className="flex justify-between items-start">
-          <CardTitle className="text-lg md:text-xl font-bold">{model.name}</CardTitle>
+          <div className="flex items-center space-x-3">
+            <ModelLogo organization={model.organization} name={model.name} />
+            <div>
+              <CardTitle className="text-lg md:text-xl font-bold">{model.name}</CardTitle>
+              <CardDescription>{model.organization}</CardDescription>
+            </div>
+          </div>
           <Badge variant={model.free ? "outline" : "default"} className={model.free ? "bg-green-100 text-green-800 hover:bg-green-200" : ""}>
             {model.free ? "Free" : "Paid"}
           </Badge>
         </div>
-        <CardDescription>{model.organization}</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="mb-4">
