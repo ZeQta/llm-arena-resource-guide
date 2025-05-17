@@ -1,4 +1,3 @@
-
 import { useState, useMemo } from "react";
 import { models } from "@/data/models";
 import Navbar from "@/components/Navbar";
@@ -6,7 +5,6 @@ import FilterBar, { FilterState } from "@/components/FilterBar";
 import ModelCard from "@/components/ModelCard";
 import Footer from "@/components/Footer";
 import { Hero } from "@/components/Hero";
-import { ModelType } from "@/types/models";
 import { Helmet } from "react-helmet";
 
 const Index = () => {
