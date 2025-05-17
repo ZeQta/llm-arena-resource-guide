@@ -1,4 +1,3 @@
-
 import { ModelType } from "@/types/models";
 
 export const models: ModelType[] = [
@@ -186,7 +185,7 @@ export const models: ModelType[] = [
     releaseDate: "2025-03-24",
     modelSize: "Undisclosed",
     contextWindow: "32K tokens",
-    multimodal: true
+    multimodal: false
   },
   {
     id: "deepseek-r1",
@@ -914,4 +913,10 @@ export const models: ModelType[] = [
     contextWindow: "128K tokens",
     multimodal: false
   }
-];
+].map(model => {
+  // Make all models multimodal except DeepSeek ones
+  if (!model.organization.includes('DeepSeek')) {
+    return { ...model, multimodal: true };
+  }
+  return model;
+});
