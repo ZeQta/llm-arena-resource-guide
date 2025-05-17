@@ -37,35 +37,40 @@ export function ThemeProvider({
 
   useEffect(() => {
     const root = window.document.documentElement;
+    
+    // Remove both classes first
     root.classList.remove("light", "dark");
 
+    // Determine which theme to use
+    let effectiveTheme: "light" | "dark";
     if (theme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light";
-      
-      root.classList.add(systemTheme);
-      setResolvedTheme(systemTheme);
-      return;
+      effectiveTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    } else {
+      effectiveTheme = theme as "light" | "dark";
     }
-
-    root.classList.add(theme);
-    setResolvedTheme(theme as "light" | "dark");
-  }, [theme]);
+    
+    // Add the appropriate class
+    root.classList.add(effectiveTheme);
+    setResolvedTheme(effectiveTheme);
+    
+    // Store the theme preference
+    localStorage.setItem(storageKey, theme);
+    
+  }, [theme, storageKey]);
   
   // Listen for changes in system preference
   useEffect(() => {
+    if (theme !== "system") return;
+    
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     
     const handleChange = () => {
-      if (theme === "system") {
-        const systemTheme = mediaQuery.matches ? "dark" : "light";
-        const root = window.document.documentElement;
-        root.classList.remove("light", "dark");
-        root.classList.add(systemTheme);
-        setResolvedTheme(systemTheme);
-      }
+      const root = window.document.documentElement;
+      const systemTheme = mediaQuery.matches ? "dark" : "light";
+      
+      root.classList.remove("light", "dark");
+      root.classList.add(systemTheme);
+      setResolvedTheme(systemTheme);
     };
     
     mediaQuery.addEventListener("change", handleChange);
@@ -75,7 +80,6 @@ export function ThemeProvider({
   const value = {
     theme,
     setTheme: (theme: Theme) => {
-      localStorage.setItem(storageKey, theme);
       setTheme(theme);
     },
     resolvedTheme,

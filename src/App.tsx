@@ -12,11 +12,18 @@ import ComparisonPage from "./pages/ComparisonPage";
 import TasksPage from "./pages/TasksPage";
 import { ThemeProvider } from "./components/ThemeProvider";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: false,
+    },
+  },
+});
 
 const App = () => (
   <React.StrictMode>
-    <ThemeProvider defaultTheme="system">
+    <ThemeProvider defaultTheme="system" storageKey="front-end-arena-theme">
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <TooltipProvider>
