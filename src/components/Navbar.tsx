@@ -1,11 +1,23 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ModeToggle } from "@/components/ModeToggle";
-import { useAuth } from "@clerk/clerk-react";
+import { MoonIcon, SunIcon } from "lucide-react";
+import { useTheme } from "next-themes";
 
 const Navbar = () => {
-  const { isSignedIn, signOut } = useAuth();
+  // Replace Clerk auth with a simpler approach
+  const isSignedIn = false; // Default to not signed in
+  const signOut = () => {
+    console.log("Sign out clicked");
+  };
+  
+  // Create simplified theme toggle to replace ModeToggle
+  const { setTheme, theme } = useTheme();
+  
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   return (
     <div className="bg-white dark:bg-gray-900 shadow">
@@ -30,7 +42,21 @@ const Navbar = () => {
 
           {/* Right side: Theme toggle and Auth */}
           <div className="flex items-center">
-            <ModeToggle />
+            {/* Simple theme toggle button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="mr-2"
+            >
+              {theme === "dark" ? (
+                <SunIcon className="h-5 w-5" />
+              ) : (
+                <MoonIcon className="h-5 w-5" />
+              )}
+              <span className="sr-only">Toggle theme</span>
+            </Button>
+            
             <div className="ml-4 flex items-center md:ml-6">
               {isSignedIn ? (
                 <Button variant="outline" size="sm" onClick={() => signOut()}>
