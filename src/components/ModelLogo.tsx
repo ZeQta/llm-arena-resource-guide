@@ -11,7 +11,7 @@ const ModelLogo = ({ organization, name }: ModelLogoProps) => {
   const getLogoUrl = (org: string): string => {
     const logoImages = {
       "Google": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg",
-      "Anthropic": "https://www.anthropic.com/images/share-claude.jpg",
+      "Anthropic": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiNS4Jn6XNA0Y3b69EcSoxIAH0goDhcD1Z-b3R0LHEhHzD1ZetyEDgVb9Q&s=10",
       "OpenAI": "https://seeklogo.com/images/O/open-ai-logo-8B9BFEDC26-seeklogo.com.png",
       "DeepSeek": "https://cdn.prod.website-files.com/657639ebfb91510f45654149/67b4c293747043c9b6d86ec3_deepseek-color.png",
       "Alibaba": "https://opencv.org/wp-content/uploads/2025/01/MIhJKlK5yVR3axxgE7_gHL-rsKjliShJKd3asUqg5KDdEsdOGut-9mCW4Ti1x7i2y8zCkxeZHQFR00sQg6BfYA.png",

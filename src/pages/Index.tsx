@@ -1,5 +1,5 @@
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { models } from "@/data/models";
 import Navbar from "@/components/Navbar";
 import FilterBar, { FilterState } from "@/components/FilterBar";
@@ -7,6 +7,7 @@ import ModelCard from "@/components/ModelCard";
 import Footer from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { ModelType } from "@/types/models";
+import { Helmet } from "react-helmet";
 
 const Index = () => {
   const [filters, setFilters] = useState<FilterState>({
@@ -55,6 +56,19 @@ const Index = () => {
   
   return (
     <div className="min-h-screen flex flex-col dark:bg-gray-900">
+      <Helmet>
+        <title>SingularityAI - Frontend Developer Model Leaderboard</title>
+        <meta name="description" content="Compare top AI models for frontend development and web design tasks. Find the best AI for React, CSS, responsive design, and UI/UX implementation." />
+        <meta name="keywords" content="AI models, frontend development, web design, React AI, UI/UX AI, responsive design, AI leaderboard, coding AI" />
+        <meta property="og:title" content="Frontend AI Models Leaderboard | SingularityAI" />
+        <meta property="og:description" content="Compare and evaluate the best AI models for frontend development, web design, and UI implementation." />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Frontend AI Models Leaderboard | SingularityAI" />
+        <meta name="twitter:description" content="Find the best AI models for frontend development, React, CSS, and UI/UX implementation." />
+        <link rel="canonical" href="https://zeqta.verecl.app" />
+      </Helmet>
+      
       <Navbar />
       <main className="flex-grow">
         <Hero />
@@ -65,9 +79,9 @@ const Index = () => {
           <div className="relative">
             <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
               <div>
-                <h2 className="text-2xl font-bold mb-2">Top Front-end AI Models</h2>
+                <h2 className="text-2xl font-bold mb-2">Top Frontend Development AI Models</h2>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Showing <span className="font-semibold text-primary">{filteredModels.length}</span> models ranked by Universal Benchmarks
+                  Showing <span className="font-semibold text-primary">{filteredModels.length}</span> models ranked by Frontend Benchmarks
                 </p>
               </div>
               <div className="w-full md:w-auto">

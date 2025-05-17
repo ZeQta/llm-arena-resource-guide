@@ -42,13 +42,13 @@ const ModelCard = ({ model }: ModelCardProps) => {
       <CardContent>
         <div className="mb-4">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-muted-foreground">Arena Score</span>
+            <span className="text-sm font-medium text-muted-foreground">Frontend Score</span>
             <span className="text-lg font-bold">{model.score.toFixed(1)}</span>
           </div>
           <div className="w-full h-2 bg-muted/50 rounded-full overflow-hidden">
             <div 
               className="h-full bg-gradient-to-r from-primary to-accent" 
-              style={{ width: `${(model.score / 1500) * 100}%` }}
+              style={{ width: `${(model.score / 10) * 100}%` }}
             ></div>
           </div>
           {model.ci && (
@@ -60,8 +60,8 @@ const ModelCard = ({ model }: ModelCardProps) => {
         
         <div className="flex justify-between mb-4">
           <div className="bg-muted/30 p-2 rounded-md flex-1 mr-2">
-            <p className="text-xs text-muted-foreground">Votes</p>
-            <p className="text-sm font-medium">{model.votes ? model.votes.toLocaleString() : 'N/A'}</p>
+            <p className="text-xs text-muted-foreground">API</p>
+            <p className="text-sm font-medium">{model.apiAccess.apiKey ? 'Key Required' : 'Open'}</p>
           </div>
           <div className="bg-muted/30 p-2 rounded-md flex-1">
             <p className="text-xs text-muted-foreground">License</p>
