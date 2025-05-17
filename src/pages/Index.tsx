@@ -1,11 +1,12 @@
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { models } from "@/data/models";
 import Navbar from "@/components/Navbar";
 import FilterBar, { FilterState } from "@/components/FilterBar";
 import ModelCard from "@/components/ModelCard";
 import Footer from "@/components/Footer";
 import { Hero } from "@/components/Hero";
+import { ModelType } from "@/types/models";
 
 const Index = () => {
   const [filters, setFilters] = useState<FilterState>({
@@ -17,7 +18,14 @@ const Index = () => {
   });
   
   const filteredModels = useMemo(() => {
-    return models.filter(model => {
+    // First assign ranks to all models based on score
+    const sortedModels = [...models].sort((a, b) => b.score - a.score);
+    const rankedModels = sortedModels.map((model, index) => ({
+      ...model, 
+      rank: index + 1
+    }));
+    
+    return rankedModels.filter(model => {
       // Filter by search term
       if (filters.search && !model.name.toLowerCase().includes(filters.search.toLowerCase()) && 
           !model.description.toLowerCase().includes(filters.search.toLowerCase()) && 

@@ -14,11 +14,13 @@ const ModelCard = ({ model }: ModelCardProps) => {
   return (
     <Card className="w-full h-full group hover:shadow-lg dark:hover:shadow-primary/10 transition-all duration-300 border-t-2 hover:border-t-primary overflow-hidden relative">
       {/* Rank badge */}
-      <div className="absolute -top-3 -left-6 w-16 h-16 bg-primary/10 dark:bg-primary/20 rotate-45">
-        <div className="absolute top-[22px] left-[30px] transform -rotate-45">
-          <span className="text-xs font-bold text-primary">#{model.rank}</span>
+      {model.rank && (
+        <div className="absolute -top-3 -left-6 w-16 h-16 bg-primary/10 dark:bg-primary/20 rotate-45">
+          <div className="absolute top-[22px] left-[30px] transform -rotate-45">
+            <span className="text-xs font-bold text-primary">#{model.rank}</span>
+          </div>
         </div>
-      </div>
+      )}
 
       <CardHeader>
         <div className="flex justify-between items-start">
@@ -29,9 +31,12 @@ const ModelCard = ({ model }: ModelCardProps) => {
               <CardDescription>{model.organization}</CardDescription>
             </div>
           </div>
-          <Badge variant={model.license === "Apache 2.0" || model.license === "MIT" ? "outline" : "default"} className={model.license === "Apache 2.0" || model.license === "MIT" ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 hover:bg-green-200" : ""}>
-            {model.license}
-          </Badge>
+          {model.license && (
+            <Badge variant={["Apache 2.0", "MIT"].includes(model.license) ? "outline" : "default"} 
+                  className={["Apache 2.0", "MIT"].includes(model.license) ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 hover:bg-green-200" : ""}>
+              {model.license}
+            </Badge>
+          )}
         </div>
       </CardHeader>
       <CardContent>
@@ -46,19 +51,21 @@ const ModelCard = ({ model }: ModelCardProps) => {
               style={{ width: `${(model.score / 1500) * 100}%` }}
             ></div>
           </div>
-          <div className="text-xs text-muted-foreground mt-1">
-            CI: {model.ci}
-          </div>
+          {model.ci && (
+            <div className="text-xs text-muted-foreground mt-1">
+              CI: {model.ci}
+            </div>
+          )}
         </div>
         
         <div className="flex justify-between mb-4">
           <div className="bg-muted/30 p-2 rounded-md flex-1 mr-2">
             <p className="text-xs text-muted-foreground">Votes</p>
-            <p className="text-sm font-medium">{model.votes.toLocaleString()}</p>
+            <p className="text-sm font-medium">{model.votes ? model.votes.toLocaleString() : 'N/A'}</p>
           </div>
           <div className="bg-muted/30 p-2 rounded-md flex-1">
             <p className="text-xs text-muted-foreground">License</p>
-            <p className="text-sm font-medium truncate">{model.license}</p>
+            <p className="text-sm font-medium truncate">{model.license || 'N/A'}</p>
           </div>
         </div>
       </CardContent>

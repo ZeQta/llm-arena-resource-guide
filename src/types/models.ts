@@ -28,6 +28,10 @@ export interface ModelType {
   modelSize?: string;
   contextWindow?: string;
   multimodal: boolean;
+  rank?: number;
+  license?: string;
+  votes?: number;
+  ci?: string;
 }
 
 export interface TaskScore {
