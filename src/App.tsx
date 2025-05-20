@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -23,28 +23,38 @@ const queryClient = new QueryClient({
   },
 });
 
-const App = () => (
-  <React.StrictMode>
-    <ThemeProvider>
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <TooltipProvider>
-            <CursorEffect />
-            <ParticleEffect />
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/model/:id" element={<ModelDetail />} />
-              <Route path="/compare" element={<ComparisonPage />} />
-              <Route path="/tasks/:taskId" element={<TasksPage />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-            <Toaster />
-            <Sonner />
-          </TooltipProvider>
-        </BrowserRouter>
-      </QueryClientProvider>
-    </ThemeProvider>
-  </React.StrictMode>
-);
+const App = () => {
+  // Enable the custom cursor when app loads
+  useEffect(() => {
+    document.documentElement.classList.add("using-custom-cursor");
+    return () => {
+      document.documentElement.classList.remove("using-custom-cursor");
+    };
+  }, []);
+
+  return (
+    <React.StrictMode>
+      <ThemeProvider>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <TooltipProvider>
+              <CursorEffect />
+              <ParticleEffect />
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/model/:id" element={<ModelDetail />} />
+                <Route path="/compare" element={<ComparisonPage />} />
+                <Route path="/tasks/:taskId" element={<TasksPage />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+              <Toaster />
+              <Sonner />
+            </TooltipProvider>
+          </BrowserRouter>
+        </QueryClientProvider>
+      </ThemeProvider>
+    </React.StrictMode>
+  );
+};
 
 export default App;
