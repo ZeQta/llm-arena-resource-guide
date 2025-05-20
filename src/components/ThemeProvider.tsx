@@ -1,14 +1,18 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 
+type Theme = "dark";
+
 type ThemeProviderState = {
-  theme: "dark";
-  resolvedTheme: "dark";
+  theme: Theme;
+  resolvedTheme: Theme;
+  setTheme: (theme: Theme) => void;
 };
 
 const initialState: ThemeProviderState = {
   theme: "dark",
   resolvedTheme: "dark",
+  setTheme: () => null,
 };
 
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
@@ -19,6 +23,8 @@ export function ThemeProvider({
 }: {
   children: React.ReactNode;
 }) {
+  const [theme, setTheme] = useState<Theme>("dark");
+
   // Force dark theme
   useEffect(() => {
     const root = window.document.documentElement;
@@ -27,8 +33,9 @@ export function ThemeProvider({
   }, []);
 
   const value = {
-    theme: "dark",
-    resolvedTheme: "dark",
+    theme: "dark" as Theme,
+    resolvedTheme: "dark" as Theme,
+    setTheme: (theme: Theme) => setTheme(theme),
   };
 
   return (

@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { SingularityLogo } from "./SingularityLogo";
+import SingularityLogo from "./SingularityLogo";
 
 const NavbarWithLogo = () => {
   return (
