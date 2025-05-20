@@ -11,6 +11,8 @@ import ModelDetail from "./pages/ModelDetail";
 import ComparisonPage from "./pages/ComparisonPage";
 import TasksPage from "./pages/TasksPage";
 import { ThemeProvider } from "./components/ThemeProvider";
+import { CursorEffect } from "./components/CursorEffect";
+import { ParticleEffect } from "./components/ParticleEffect";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,10 +25,12 @@ const queryClient = new QueryClient({
 
 const App = () => (
   <React.StrictMode>
-    <ThemeProvider defaultTheme="system" storageKey="front-end-arena-theme">
+    <ThemeProvider>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <TooltipProvider>
+            <CursorEffect />
+            <ParticleEffect />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/model/:id" element={<ModelDetail />} />
