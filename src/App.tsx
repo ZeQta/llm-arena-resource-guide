@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ModelDetail from "./pages/ModelDetail";
 import ComparisonPage from "./pages/ComparisonPage";
+import CompareAI from "./pages/CompareAI";
 import TasksPage from "./pages/TasksPage";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { CursorEffect } from "./components/CursorEffect";
@@ -44,6 +45,7 @@ const App = () => {
                 <Route path="/" element={<Index />} />
                 <Route path="/model/:id" element={<ModelDetail />} />
                 <Route path="/compare" element={<ComparisonPage />} />
+                <Route path="/compare-ai" element={<CompareAI />} />
                 <Route path="/tasks/:taskId" element={<TasksPage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
