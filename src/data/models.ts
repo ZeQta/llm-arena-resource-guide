@@ -2,6 +2,38 @@ import { ModelType } from "@/types/models";
 
 export const models: ModelType[] = [
   {
+    id: "gemini-25-pro-thinking-preview",
+    name: "Gemini-2.5-Pro-Preview-05-06 (Thinking)",
+    organization: "Google",
+    description: "Google's most advanced multimodal model with enhanced reasoning capabilities for front-end coding, excels at complex problem-solving and generating high-quality HTML, CSS and JavaScript code with excellent UI/UX designs.",
+    score: 10.0,
+    free: false,
+    topTask: "Advanced Front-end Code Generation with Reasoning",
+    tags: ["Front-end", "Multimodal", "UI Design", "React", "Reasoning"],
+    tasks: [
+      { taskName: "Code Generation", score: 10.0, benchmark: "ARENA", details: "1459.85 Arena Score" },
+      { taskName: "React", score: 10.0, benchmark: "UB" },
+      { taskName: "CSS/Tailwind", score: 9.9, benchmark: "UB" },
+      { taskName: "Responsive Design", score: 9.8, benchmark: "UB" },
+      { taskName: "UI/UX", score: 9.9, benchmark: "UB" }
+    ],
+    pricing: {
+      paid: {
+        pricing: "$12/1M input tokens, $36/1M output tokens",
+        tiers: ["Pay as you go", "Enterprise"]
+      }
+    },
+    apiAccess: {
+      url: "https://ai.google.dev/api/rest",
+      documentation: "https://ai.google.dev/docs",
+      apiKey: true
+    },
+    releaseDate: "2025-05-06",
+    modelSize: "Undisclosed",
+    contextWindow: "1M tokens",
+    multimodal: true
+  },
+  {
     id: "gemini-25-pro-preview",
     name: "Gemini-2.5-Pro-Preview-05-06",
     organization: "Google",
@@ -34,6 +66,38 @@ export const models: ModelType[] = [
     multimodal: true
   },
   {
+    id: "claude-4-sonnet",
+    name: "Claude 4 Sonnet (20250301)",
+    organization: "Anthropic",
+    description: "Anthropic's latest generation front-end development model with exceptional understanding of modern web frameworks and superior code generation capabilities.",
+    score: 9.85,
+    free: false,
+    topTask: "Next-gen Framework Development",
+    tags: ["Front-end", "Claude 4", "Advanced Frameworks", "Documentation"],
+    tasks: [
+      { taskName: "Code Generation", score: 9.85, benchmark: "ARENA", details: "1389.45 Arena Score" },
+      { taskName: "React", score: 9.9, benchmark: "UB" },
+      { taskName: "CSS/Tailwind", score: 9.8, benchmark: "UB" },
+      { taskName: "Responsive Design", score: 9.8, benchmark: "UB" },
+      { taskName: "UI/UX", score: 9.7, benchmark: "UB" }
+    ],
+    pricing: {
+      paid: {
+        pricing: "$18/1M input tokens, $90/1M output tokens",
+        tiers: ["Pay as you go", "Enterprise"]
+      }
+    },
+    apiAccess: {
+      url: "https://docs.anthropic.com/claude/reference/getting-started-with-the-api",
+      documentation: "https://docs.anthropic.com/claude/docs",
+      apiKey: true
+    },
+    releaseDate: "2025-03-01",
+    modelSize: "Undisclosed",
+    contextWindow: "200K tokens",
+    multimodal: true
+  },
+  {
     id: "claude-37-sonnet",
     name: "Claude 3.7 Sonnet (20250219)",
     organization: "Anthropic",
@@ -61,6 +125,38 @@ export const models: ModelType[] = [
       apiKey: true
     },
     releaseDate: "2025-02-19",
+    modelSize: "Undisclosed",
+    contextWindow: "200K tokens",
+    multimodal: true
+  },
+  {
+    id: "claude-4-opus",
+    name: "Claude 4 Opus (20250315)",
+    organization: "Anthropic",
+    description: "Anthropic's powerful Claude 4 model optimized for complex front-end architectures and enterprise-level development with advanced reasoning capabilities.",
+    score: 9.75,
+    free: false,
+    topTask: "Complex Front-end Architecture",
+    tags: ["Front-end", "Claude 4", "Enterprise", "Complex Architecture"],
+    tasks: [
+      { taskName: "Code Generation", score: 9.75, benchmark: "ARENA", details: "1315.20 Arena Score" },
+      { taskName: "React", score: 9.7, benchmark: "UB" },
+      { taskName: "CSS/Tailwind", score: 9.6, benchmark: "UB" },
+      { taskName: "Responsive Design", score: 9.6, benchmark: "UB" },
+      { taskName: "UI/UX", score: 9.5, benchmark: "UB" }
+    ],
+    pricing: {
+      paid: {
+        pricing: "$25/1M input tokens, $125/1M output tokens",
+        tiers: ["Pay as you go", "Enterprise"]
+      }
+    },
+    apiAccess: {
+      url: "https://docs.anthropic.com/claude/reference/getting-started-with-the-api",
+      documentation: "https://docs.anthropic.com/claude/docs",
+      apiKey: true
+    },
+    releaseDate: "2025-03-15",
     modelSize: "Undisclosed",
     contextWindow: "200K tokens",
     multimodal: true
@@ -127,6 +223,38 @@ export const models: ModelType[] = [
     releaseDate: "2025-04-14",
     modelSize: "Undisclosed",
     contextWindow: "128K tokens",
+    multimodal: true
+  },
+  {
+    id: "gemini-25-flash-05-20",
+    name: "Gemini-2.5-Flash-05-20",
+    organization: "Google",
+    description: "Latest version of Gemini 2.5 Flash optimized for rapid front-end development with enhanced performance and speed for interactive applications.",
+    score: 9.65,
+    free: false,
+    topTask: "Rapid Interactive Development",
+    tags: ["Front-end", "Fast", "Interactive", "Performance"],
+    tasks: [
+      { taskName: "Code Generation", score: 9.65, benchmark: "ARENA", details: "1248.72 Arena Score" },
+      { taskName: "React", score: 9.6, benchmark: "UB" },
+      { taskName: "CSS/Tailwind", score: 9.7, benchmark: "UB" },
+      { taskName: "Responsive Design", score: 9.5, benchmark: "UB" },
+      { taskName: "UI/UX", score: 9.6, benchmark: "UB" }
+    ],
+    pricing: {
+      paid: {
+        pricing: "$4/1M input tokens, $12/1M output tokens",
+        tiers: ["Pay as you go", "Enterprise"]
+      }
+    },
+    apiAccess: {
+      url: "https://ai.google.dev/api/rest",
+      documentation: "https://ai.google.dev/docs",
+      apiKey: true
+    },
+    releaseDate: "2025-05-20",
+    modelSize: "Undisclosed",
+    contextWindow: "1M tokens",
     multimodal: true
   },
   {
